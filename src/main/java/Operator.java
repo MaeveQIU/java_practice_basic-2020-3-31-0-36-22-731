@@ -24,10 +24,25 @@ public class Operator {
 
   public static void operateSelectStatement(String option) throws SQLException {
     ResultSet resultSet;
+    String newInfo;
     switch (option) {
       case "1.1.1":
         resultSet = UserRepository.outputAllValues("student");
         System.out.println(formatter.formatIntoUser(resultSet));
+        break;
+
+      case "1.1.2":
+        System.out.println(Message.QUERY_STUDENT_SCORE);
+        newInfo = scanner.next();
+        resultSet = UserRepository.outputStudentScore(newInfo);
+        System.out.println(formatter.formatIntoStudentScore(resultSet));
+        break;
+
+      case "1.1.3":
+        System.out.println(Message.QUERY_TEACHER_INFO);
+        newInfo = scanner.next();
+        resultSet = UserRepository.outputTeacherAndStudentScore(newInfo);
+        System.out.println(formatter.formatIntoTeacherWithStudent(resultSet));
         break;
 
       case "1.2.1":
@@ -35,11 +50,31 @@ public class Operator {
         System.out.println(formatter.formatIntoCourse(resultSet));
         break;
 
+      case "1.2.2":
+        System.out.println(Message.QUERY_COURSE_INFO);
+        newInfo = scanner.nextLine();
+        resultSet = UserRepository.outputUserDefinedValues(newInfo, "course");
+        System.out.println(formatter.formatIntoCourse(resultSet));
+        break;
+
+      case "1.2.3":
+        System.out.println(Message.QUERY_TEACHER_INFO);
+        newInfo = scanner.nextLine();
+        resultSet = UserRepository.outputCourseForTeacher(newInfo);
+        System.out.println(formatter.formatIntoCourseWithTeacher(resultSet));
+        break;
+
       case "1.3.1":
         resultSet = UserRepository.outputAllValues("teacher");
         System.out.println(formatter.formatIntoUser(resultSet));
         break;
 
+      case "1.3.2":
+        System.out.println(Message.QUERY_TEACHER_INFO);
+        newInfo = scanner.next();
+        resultSet = UserRepository.outputUserDefinedValues(newInfo, "teacher");
+        System.out.println(formatter.formatIntoUser(resultSet));
+        break;
 
       default:
         System.out.println(Message.OPTION_OUT_OF_RANGE);

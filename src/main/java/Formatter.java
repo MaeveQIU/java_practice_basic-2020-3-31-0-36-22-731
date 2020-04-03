@@ -26,4 +26,39 @@ public class Formatter {
     }
     return result.toString();
   }
+
+  public String formatIntoStudentScore(ResultSet set) throws SQLException {
+    StringBuilder result = new StringBuilder();
+
+    while (set.next()) {
+      result.append(String.format("学生姓名：%s，课程： %s，成绩：%d\n",
+              set.getString("name"),
+              set.getString("course_name"),
+              set.getInt("score")));
+    }
+    return result.toString();
+  }
+
+  public String formatIntoCourseWithTeacher(ResultSet set) throws SQLException {
+    StringBuilder result = new StringBuilder();
+
+    while (set.next()) {
+      result.append(String.format("老师姓名：%s，课程名称： %s\n",
+              set.getString("name"),
+              set.getString("course_name")));
+    }
+    return result.toString();
+  }
+
+  public String formatIntoTeacherWithStudent(ResultSet set) throws SQLException {
+    StringBuilder result = new StringBuilder();
+
+    while (set.next()) {
+      result.append(String.format("老师姓名：%s，学生姓名：%s，学生分数：%d\n",
+              set.getString("name"),
+              set.getString("student_name"),
+              set.getInt("score")));
+    }
+    return result.toString();
+  }
 }

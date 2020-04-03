@@ -21,8 +21,38 @@ public class UserRepository {
     } else {
       sql = String.format("SELECT id, name, gender, age FROM %s;", category);
     }
-    ResultSet resultSet = utils.executeSelectStatement(sql);
-    return resultSet;
+    return utils.executeSelectStatement(sql);
+  }
+
+  public static ResultSet outputStudentScore(String newInfo) {
+    String sql = String.format("SELECT DISTINCT student.name, course.course_name, score.score FROM student, course, score \n" +
+            "WHERE student.id = score.student_id AND course.course_id = score.course_id\n" +
+            "AND student.name = '%s';", newInfo);
+    return utils.executeSelectStatement(sql);
+  }
+
+  public static ResultSet outputUserDefinedValues(String newInfo, String category) {
+    String sql;
+    if (category.equals("course")) {
+      sql = String.format("SELECT DISTINCT course_id, course_name FROM course WHERE course_name = '%s';", newInfo);
+    } else {
+      sql = String.format("SELECT id, name, gender, age FROM teacher WHERE name = '%s';", newInfo);
+    }
+    return  utils.executeSelectStatement(sql);
+  }
+
+  public static ResultSet outputCourseForTeacher(String newInfo) {
+    String sql = String.format("SELECT DISTINCT teacher.name, course.course_name FROM course, teacher \n" +
+            "WHERE course.teacher_id = teacher.id AND teacher.name = '%s';", newInfo);
+    return utils.executeSelectStatement(sql);
+  }
+
+  public static ResultSet outputTeacherAndStudentScore(String newInfo) {
+    String sql = String.format("SELECT teacher.name, student.name AS student_name, score.score From teacher, student, course, score\n" +
+            "WHERE course.teacher_id = teacher.id AND course.student_id = student.id \n" +
+            "AND score.student_id = student.id AND score.course_id = course.course_id\n" +
+            "AND teacher.name = '%s';", newInfo);
+    return utils.executeSelectStatement(sql);
   }
 
   public static void insertStudent(String newInfo) {

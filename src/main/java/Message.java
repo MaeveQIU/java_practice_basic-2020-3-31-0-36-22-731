@@ -3,6 +3,9 @@ public class Message {
   public static final String WELCOME = "您好，欢迎登陆学生考试系统，请输入您的用户名和密码(用户名:密码)：";
   public static final String SYSTEM_CLOSE = "您不是本系统的用户，系统关闭";
   public static final String OPTION_OUT_OF_RANGE = "请输入范围以内的数字";
+  public static final String QUERY_STUDENT_SCORE = "请输入需要查询的学生姓名";
+  public static final String QUERY_COURSE_INFO = "请输入需要查询的课程名称";
+  public static final String QUERY_TEACHER_INFO = "请输入需要查询的老师姓名";
   public static final String INSERT_STUDENT_MESSAGE = "请输入学生信息(学号:姓名:性别:年龄)： ";
   public static final String INSERT_COURSE_MESSAGE = "请输入课程信息(课程编号:课程名称)： ";
   public static final String INSERT_SUCCESS_MESSAGE = "信息更新成功";
